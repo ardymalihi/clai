@@ -22,7 +22,7 @@ const getDockerCommand = async (query) => {
         const model = genAI.getGenerativeModel({ model: process.env.GOOGLE_AI_MODEL });
 
         // Create the prompt for the model based on the user input
-        const prompt = `You are a helpful assistant that converts natural language queries into Docker commands. Here is the user request: '${query}'. Please provide the most relevant Docker commands based on the query. For any reasons, DO NOT provide explanations, just the commands. The result MUST be in plain text and NOT use markdown.`;
+        const prompt = `You are a helpful assistant that converts natural language queries into Docker OR Kubernetes commands. Here is the user request: '${query}'. Please provide the most relevant Docker commands OR Kubernetes commands based on the query. For any reasons, DO NOT provide explanations, just the commands. The result MUST be in plain text and NOT use markdown. ONLY return one command`;
 
         // Request the model to generate content
         const result = await model.generateContent(prompt);
