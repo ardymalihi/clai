@@ -62,6 +62,15 @@ node clai.js "how to see my deployment YAML content that has been already deploy
 kubectl get deployment <deployment-name> -o yaml
 ```
 
+#### Example 4: Advanced
+```sh
+node clai.js "Command to extract first deployment's name, then get its pod template, formatted with jq?"
+```
+**Output:**
+```sh
+kubectl get deployment -o jsonpath='{.items[0].metadata.name}' | xargs -I {} kubectl get deployment {} -o jsonpath='{.spec.template}' | jq .
+```
+
 ## Error Handling
 If you encounter an error like **API Key is missing**, ensure that:
 - The `.env` file is correctly set up.
